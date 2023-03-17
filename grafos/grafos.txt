@@ -1,0 +1,82 @@
+* Conceptualización
+
+    En programación, un grafo es una estructura de datos que consta de un conjunto de nodos o vértices y un conjunto de aristas o enlaces que conectan pares de nodos.
+
+    V={1,4,5,7,9} <--- vertices
+    A={(1,4),(4,1),(5,1),(1,5),(7,9),(9,7),(7,5),(5,7),(4,9),(9,4)} <--- arista
+
+    Los grafos se utilizan para representar relaciones entre objetos o entidades y se aplican ampliamente en diversas áreas, como redes informáticas, redes sociales, 
+    teoría de juegos, programación lineal, sistemas de recomendación y muchas otras.
+    En Python, se pueden implementar grafos utilizando una variedad de enfoques, como matrices de adyacencia, listas de adyacencia y objetos de nodos y enlaces. 
+    Uno de los módulos más populares para trabajar con grafos en Python es NetworkX, que proporciona una amplia gama de algoritmos para analizar y manipular grafos.
+    Para utilizar NetworkX, primero debemos instalar el paquete a través de la terminal o el Anaconda Prompt usando el siguiente comando:
+
+    pip install networkx
+
+    Luego, podemos crear un grafo utilizando la clase Graph de NetworkX, que representa un grafo no dirigido:
+
+    import networkx as nx
+
+    G = nx.Graph()
+
+    Podemos agregar nodos y enlaces al grafo utilizando los métodos add_node() y add_edge(), respectivamente:
+
+    G.add_node(1)
+    G.add_node(2)
+    G.add_edge(1, 2)
+
+    Podemos visualizar el grafo utilizando la función draw() de NetworkX:
+
+    nx.draw(G, with_labels=True)
+
+    Esto mostrará una ventana de visualización que representa el grafo con los nodos y enlaces agregados.
+
+    En resumen, los grafos son una estructura de datos útil para representar relaciones entre objetos en Python, y NetworkX es un módulo popular para 
+    trabajar con grafos que proporciona una amplia gama de algoritmos y herramientas para análisis y manipulación de grafos.
+
+    * Estrucutra de Datos Dinámica
+    * Mutidimensional
+    * Representa relaciones entre objetos (entes)
+    * Está formado por un conjunto de vertices (nodos) y una colección de pares de vertices denominados arcos (aristas)
+    * Los arcos representan las relaciones entre los vértices
+
+    Para un arco (u,v), se dice que u y v son adyasentes
+    Ejemplo: En el grafo, E y H son adyasentes, al igual que E y C, mientras que E no es adyasente de F
+
+    La adyacencia siempre es directa
+
+    Cuando no es directa estariamos hablando de path o camino
+
+    El grafo es dirigido si los arcos o aristas tienen flechas
+
+    En algunos casos, el arco o arista, tiene asociación una magnitud o valor, usualmente llamado peso (weight), en ese caso se dice que es un grafo valorado (o con pesos - weighted)
+
+    **Grado del noddo (node order)**: Número de arcos que contienen al vértice. Para grafos dirigidos hay dos: grado de entrada (número de arcos que llegan) y grado de salida (número de arcosque 
+    salen de él)
+
+    **Camino (path)**: Es una secuencia de vértices desde un vértice inicial (vsub0) a un vértice final (Vsubn). P=(Vsub0, Vsub1, Vsub2, ..., Vsubn). El número de vértices + 1 es la longitud del camino
+    **Longitud del camino**: 
+        Grafos sin pesos= Número de arcos en el camino
+        Grado con pesos = Suma de pesos de los arcos en el camino
+
+Tipos de grafos
+
+    1. Grafo no dirigido: Es un grafo en el que todas las aristas o enlaces son bidireccionales, es decir, no tienen una dirección específica.
+    En un grafo no dirigido, se puede ir de un nodo a otro en ambas direcciones.
+
+    2. Grafo dirigido: Es un grafo en el que todas las aristas tienen una dirección específica, es decir, hay una arista que va desde un nodo de inicio a un nodo de destino.
+    En un grafo dirigido, no se puede ir de un nodo a otro en ambas direcciones.
+
+    3. Grafo ponderado: Es un grafo en el que cada arista tiene un peso o valor asociado. Este peso puede representar, por ejemplo, la distancia entre dos ciudades en una red 
+    de carreteras o la duración de una actividad en un diagrama de Gantt.
+
+    4. Grafo bipartito: Es un grafo en el que los nodos se pueden dividir en dos conjuntos disjuntos, y todas las aristas conectan nodos de diferentes conjuntos.
+    Esto significa que no hay aristas que conecten nodos dentro del mismo conjunto.
+
+    5. Grafo cíclico: Es un grafo que contiene al menos un ciclo, es decir, una secuencia de nodos y enlaces que comienzan y terminan en el mismo nodo.
+
+    6. Grafo acíclico: Es un grafo que no contiene ciclos, es decir, no hay una secuencia de nodos y enlaces que comience y termine en el mismo nodo.
+
+    7. Grafo completo: Es un grafo en el que cada par de nodos está conectado por una arista.
+
+    8. Grafo conexo: Es un grafo en el que hay al menos un camino entre cualquier par de nodos.
