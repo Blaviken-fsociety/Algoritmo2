@@ -59,6 +59,10 @@
         Grafos sin pesos= Número de arcos en el camino
         Grado con pesos = Suma de pesos de los arcos en el camino
 
+    * Un camino es simple, si todos los nodos que lo conforman son distintos, excepto los extremos del mismo
+    * Un ciclo, es un camino simple cerrado, tiene igual inicio y final
+    * Un grafo dirigiddo sin ciclos se le llama GDA (Grado dirigido acíclico). Ciclo = (A,E,B,F,A)
+
 Tipos de grafos
 
     1. Grafo no dirigido: Es un grafo en el que todas las aristas o enlaces son bidireccionales, es decir, no tienen una dirección específica.
