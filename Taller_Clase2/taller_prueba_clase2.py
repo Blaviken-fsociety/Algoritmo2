@@ -1,5 +1,4 @@
 from tallerclase2 import *
-a="\n"
 lista = ListaSimple()
 
 # Agregar elementos a la lista
@@ -13,7 +12,6 @@ actual = lista.cabeza
 while actual:
     print(actual.dato, end=' ')
     actual = actual.siguiente
-print(a)
 print("Longitud:", lista.longitud)
 
 # Eliminar el último elemento de la lista
