@@ -56,12 +56,21 @@
 
     **Camino (path)**: Es una secuencia de vértices desde un vértice inicial (vsub0) a un vértice final (Vsubn). P=(Vsub0, Vsub1, Vsub2, ..., Vsubn). El número de vértices + 1 es la longitud del camino
     **Longitud del camino**: 
-        Grafos sin pesos= Número de arcos en el camino
+        Grafos sin pesos = Número de arcos en el camino
         Grado con pesos = Suma de pesos de los arcos en el camino
 
     * Un camino es simple, si todos los nodos que lo conforman son distintos, excepto los extremos del mismo
     * Un ciclo, es un camino simple cerrado, tiene igual inicio y final
     * Un grafo dirigiddo sin ciclos se le llama GDA (Grado dirigido acíclico). Ciclo = (A,E,B,F,A)
+
+    Un grafo no ddirigido es conexo, si existe camino entre cualquier par de nodos (vértices). Un grafo dirigido similar, se dice que es fuertemente conexo
+
+    Un grafo completo, tiene un arco para cualquier par de vértices
+
+IMPLEMENTACIÓN
+
+    Matriz de adyacencia
+        para el grafo G = {D,F,K,L,R}, su matriz de adyacencia seria:
 
 Tipos de grafos
 
