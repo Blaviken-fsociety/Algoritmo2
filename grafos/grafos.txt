@@ -72,6 +72,13 @@ IMPLEMENTACIÓN
     Matriz de adyacencia
         para el grafo G = {D,F,K,L,R}, su matriz de adyacencia seria:
 
+    Para un grafo G = (V, A) con N vértices, los nodos se numeran consecutivamente de 0 a N-1.
+
+    Matriz dispersa: Muchos ceros y pocos unos
+
+    Matriz de adyacencia vs Lista de adyacencia: Con grafos poco densos o dispersos, la matriz es poco eficiente, dado que muchos de sus valores serían ceros.
+    En grafos densos, es una mejor implementación, pero para grafos con pocos arcos, es mejor la lista de adyacencia
+
 Tipos de grafos
 
     1. Grafo no dirigido: Es un grafo en el que todas las aristas o enlaces son bidireccionales, es decir, no tienen una dirección específica.
@@ -93,3 +100,23 @@ Tipos de grafos
     7. Grafo completo: Es un grafo en el que cada par de nodos está conectado por una arista.
 
     8. Grafo conexo: Es un grafo en el que hay al menos un camino entre cualquier par de nodos.
+
+Recorridos en Grafos
+
+    •Visitan todos los vértices del grafo (Traversal)
+    • Son usados en tareas como:
+    • Determinar si el grafo tiene ciclos
+    • Establecer un camino entre dos vértices
+    • Determinar si el grafo es conectado
+    • No son únicos, cambian dependiendo del vértice inicial.
+
+Recorrido en Profundidad
+(Depth First Search - DFS)
+
+    Usado para determinar si un vértice presenta un camino hacia otro, o si el grafo es conectado.
+    1. Se inicia el recorrido en un vértice específico (s).
+    2. El vértice s se marca como visitado.
+    3. Se ubican los adyacentes de s y se localiza el primer vértice no visitado (v), para lo cual se inicia el proceso nuevamente con v.
+    Si se encuentra un vértice ya visitado, se ignora.
+    El proceso termina si se llega nuevamente a s o no existen más vértices por visita.
+
