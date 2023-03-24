@@ -120,3 +120,10 @@ Recorrido en Profundidad
     Si se encuentra un vértice ya visitado, se ignora.
     El proceso termina si se llega nuevamente a s o no existen más vértices por visita.
 
+Recorrido en Anchura
+(Breadth First Search - BFS)
+
+    1. Se inicia el recorrido en un vértice específico (s) y se considera el nivel 0.
+    2. Todos los adyacentes de s se marcan como visitados y se consideran el nivel 1.
+    3. Se visitan los vértices del nivel 1 realizando la misma operación, nivel por nivel.
+    El proceso termina cuando no existen más vértices nuevos en un nivel.
