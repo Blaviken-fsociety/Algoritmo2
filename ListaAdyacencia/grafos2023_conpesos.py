@@ -1,49 +1,42 @@
-#Clase Grafo
 class GrafoLista:
-    def __init__(self) -> None:
-        self.__lista_vertices = dict()
-    
-    def __str__(self) -> str:
-        return str(self.__lista_vertices)
-    
-    def buscarVertice(self, dato_buscar):
-        return self.__lista_vertices.get(dato_buscar)
-    
-    def adicionarVertice(self, dato_nuevo_vertice):
-        if self.buscarVertice(dato_nuevo_vertice) is None:
-            lista_adyacentes = set()
-            self.__lista_vertices[dato_nuevo_vertice] = lista_adyacentes
-    
-    def verVertices(self):
-        return list(self.__lista_vertices.keys())
-    
-    def adicionarArco(self, vertice_inicial, vertice_final):
-        busqueda_inicial = self.buscarVertice(vertice_inicial)
-        busqueda_final = self.buscarVertice(vertice_final)
-        if busqueda_inicial is None or busqueda_final is None:
-            return False
-        busqueda_inicial.add(vertice_final)
-    
-    def sonAdyacentes(self, vertice_inicial, vertice_final):
-        busqueda_inicial = self.buscarVertice(vertice_inicial)
-        busqueda_final = self.buscarVertice(vertice_final)
-        if busqueda_inicial is None or busqueda_final is None:
-            return False
-        return vertice_final in busqueda_inicial
-    
-    def nodosConAdyacente(self, adyacente):
-        nodos = []
-        for vertice, adyacentes in self.__lista_vertices.items():
-            if adyacente in adyacentes:
-                nodos.append(vertice)
-        return nodos
-    
+
+    def __init__(self):
+        self.listaAdyacencia = {}
+
+    def __str__(self):
+        string = ""
+        for vertice, adyacentes in self.listaAdyacencia.items():
+            adyacentes_str = ", ".join([f"({destino}, {peso})" for destino, peso in adyacentes])
+            string += f"{vertice}: [{adyacentes_str}]\n"
+        return string
+
+
+    def agregarVertice(self, vertice):
+        if vertice not in self.listaAdyacencia:
+            self.listaAdyacencia[vertice] = []
+
+    def agregarArco(self, vertice_inicial, vertice_final, peso):
+        if vertice_inicial not in self.listaAdyacencia:
+            self.listaAdyacencia[vertice_inicial] = []
+        self.listaAdyacencia[vertice_inicial].append((vertice_final, peso))
+
+    def obtenerVertices(self):
+        return list(self.listaAdyacencia.keys())
+
+    def obtenerAdyacentes(self, vertice):
+        return [i[0] for i in self.listaAdyacencia[vertice]]
+
+    def obtenerPesoArco(self, vertice_inicial, vertice_final):
+        for ady in self.listaAdyacencia[vertice_inicial]:
+            if ady[0] == vertice_final:
+                return ady[1]
+
     def gradoSalida(self, vertice):
         adyacentes = self.buscarVertice(vertice)
         if adyacentes is None:
             return None
         return len(adyacentes)
-    
+
     def gradoEntrada(self, vertice):
         grado = 0
         for vertice_actual in self.verVertices():
@@ -55,11 +48,11 @@ class GrafoLista:
         busqueda_inicial = self.buscarVertice(vertice_inicial)
         busqueda_final = self.buscarVertice(vertice_final)
         if busqueda_inicial is not None and busqueda_final is not None and self.sonAdyacentes(vertice_inicial, vertice_final):
-            busqueda_inicial.remove(vertice_final)
+            del busqueda_inicial[vertice_final]
             return True
         else:
             return False
-        
+
     def eliminarVertice(self, vertice_eliminar):
         if self.buscarVertice(vertice_eliminar) is None:
             return False
@@ -68,10 +61,10 @@ class GrafoLista:
         
         for vertice_actual, adyacentes in self.__lista_vertices.items():
             if vertice_eliminar in adyacentes:
-                adyacentes.remove(vertice_eliminar)
+                del adyacentes[vertice_eliminar]
         
         return True
-    
+
     #RECORRIDOS
     #RECORRIDO EN PROFUNDIDAD DFS
     def __dfs(self, list_recorrido:list, set_visitados:set, vertice_actual):
