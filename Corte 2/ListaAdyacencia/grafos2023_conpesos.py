@@ -74,6 +74,13 @@ class GrafoLista:
             count += len(adyacentes)
         return count
 
+    def obtenerPesoArcoPorIndice(self, indice_inicial, indice_final):
+        if indice_inicial < 0 or indice_inicial >= len(self.listaAdyacencia) or indice_final < 0 or indice_final >= len(self.listaAdyacencia):
+            return None
+        vertice_inicial = self.obtenerVertices()[indice_inicial]
+        vertice_final = self.obtenerVertices()[indice_final]
+        return self.obtenerPesoArco(vertice_inicial, vertice_final)
+
     #RECORRIDOS
     #RECORRIDO EN PROFUNDIDAD DFS
     def __dfs(self, list_recorrido:list, set_visitados:set, vertice_actual):

@@ -8,15 +8,13 @@ g.agregarVertice("B")
 g.agregarVertice("C")
 g.agregarVertice("D")
 
-g.agregarArco("A", "B", 1)
-g.agregarArco("A", "C", 2)
+g.agregarArco("A", "B", 2)
+g.agregarArco("A", "C", 1)
 g.agregarArco("B", "D", 3)
-g.agregarArco("C", "D", 4)
+g.agregarArco("C", "D", 1)
 
-# Contamos el número de arcos en el grafo
-num_arcos = g.contarArcos()
+# Obtenemos el peso del arco que va de "A" a "B" (índice 0)
+peso_arco = g.obtenerPesoArco("A", "B")
 
 # Imprimimos el resultado
-print(f"El número de arcos en el grafo es: {num_arcos}")
-
-
+print(f"El peso del arco de A a B es: {peso_arco}")
