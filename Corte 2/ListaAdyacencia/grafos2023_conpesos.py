@@ -80,6 +80,13 @@ class GrafoLista:
         vertice_inicial = self.obtenerVertices()[indice_inicial]
         vertice_final = self.obtenerVertices()[indice_final]
         return self.obtenerPesoArco(vertice_inicial, vertice_final)
+    
+    def obtenerArcos(self):
+        arcos = []
+        for vertice, adyacentes in self.listaAdyacencia.items():
+            for destino, peso in adyacentes:
+                arcos.append((vertice, destino, peso))
+        return arcos
 
     #RECORRIDOS
     #RECORRIDO EN PROFUNDIDAD DFS

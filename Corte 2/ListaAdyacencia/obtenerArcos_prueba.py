@@ -1,6 +1,7 @@
 from grafos2023_conpesos import GrafoLista
 
-# Crear un nuevo grafo
+# Creamos un grafo de ejemplo
+
 grafo = GrafoLista()
 
 grafo.agregarVertice("A")
@@ -12,5 +13,5 @@ grafo.agregarArco("A", "B", 2)
 grafo.agregarArco("B", "C", 3)
 grafo.agregarArco("C", "D", 1)
 
-print(grafo.contarArcos())
-
+arcos = grafo.obtenerArcos()
+print(arcos)
