@@ -64,6 +64,15 @@ class GrafoLista:
                 del adyacentes[vertice_eliminar]
         
         return True
+    
+    def contarVertices(self):
+        return len(self.listaAdyacencia)
+    
+    def contarArcos(self):
+        count = 0
+        for adyacentes in self.listaAdyacencia.values():
+            count += len(adyacentes)
+        return count
 
     #RECORRIDOS
     #RECORRIDO EN PROFUNDIDAD DFS
