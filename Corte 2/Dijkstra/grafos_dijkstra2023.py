@@ -56,8 +56,82 @@ class GrafoLista:
         for arco in busqueda_inicial:
             if arco.vertice_final == vertice_final:
                 return True
+        return False
+
+    def hayCamino(self, vertice_inicial, vertice_final):
+        if self.buscarVertice(vertice_inicial) is None or self.buscarVertice(vertice_final) is None:
+            return False
+        visitados = set()
+        return self.__dfsCamino(visitados, vertice_inicial, vertice_final)
+        
+    def __dfsCamino(self, visitados:set, vertice_actual, vertice_final):
+        visitados.add(vertice_actual)
+        if vertice_actual == vertice_final:
+            return True
+        adyacentes_actual = self.buscarVertice(vertice_actual)
+        for arco_ady_actual in adyacentes_actual:
+            ady_actual = arco_ady_actual.vertice_final
+            if ady_actual not in visitados and self.__dfsCamino(visitados, ady_actual, vertice_final):
+                return True
+        return False
+
+    def tieneCiclo(self):
+        visitados = set()
+        pila = []
+        for vertice in self.verVertices():
+            if vertice not in visitados:
+                if self.__tieneCicloUtil(vertice, visitados, pila):
+                    return True
+        return False
+    
+    def __tieneCicloUtil(self, vertice_actual, visitados, pila):
+        visitados.add(vertice_actual)
+        pila.append(vertice_actual)
+        adyacentes_actual = self.buscarVertice(vertice_actual)
+        for arco_ady_actual in adyacentes_actual:
+            ady_actual = arco_ady_actual.vertice_final
+            if ady_actual not in visitados:
+                if self.__tieneCicloUtil(ady_actual, visitados, pila):
+                    return True
+            elif ady_actual in pila:
+                return True
+        pila.remove(vertice_actual)
         return False   
     
+    def esFuertementeConexo(self):
+        for vertice in self.verVertices():
+            visitados = set()
+            self.__dfs(list(), visitados, vertice)
+            if len(visitados) != len(self.verVertices()):
+                return False
+        return True
+    
+    def esCompleto(self):
+        # Verificar grafo no dirigido
+        num_vertices = len(self.__lista_vertices)
+        for vertice in self.verVertices():
+            adyacentes = self.buscarVertice(vertice)
+            if len(adyacentes) != num_vertices - 1:
+                return False
+            for otro_vertice in self.verVertices():
+                if otro_vertice != vertice and not self.sonAdyacentes(vertice, otro_vertice):
+                    return False
+        return True
+        
+        # Verificar grafo dirigido
+        for vertice in self.verVertices():
+            adyacentes_salida = set()
+            adyacentes_entrada = set()
+            for arco in self.buscarVertice(vertice):
+                adyacentes_salida.add(arco.vertice_final)
+                adyacentes_entrada.add(arco.vertice_inicial)
+            if len(adyacentes_salida) != num_vertices - 1 or len(adyacentes_entrada) != num_vertices - 1:
+                return False
+            for otro_vertice in self.verVertices():
+                if otro_vertice != vertice and (not self.sonAdyacentes(vertice, otro_vertice) or not self.sonAdyacentes(otro_vertice, vertice)):
+                    return False
+        return True
+
     #RECORRIDOS
     #RECORRIDO EN PROFUNDIDAD DFS
     def __dfs(self, list_recorrido:list, set_visitados:set, vertice_actual):
