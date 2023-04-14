@@ -4,13 +4,14 @@ from grafos2023 import GrafoLista
 grafo = GrafoLista()
 print("Grafo: ",grafo)
 
+# Agregamos algunos nodos
 grafo.adicionarVertice(1)
 grafo.adicionarVertice(2)
 grafo.adicionarVertice(3)
 grafo.adicionarVertice(4)
 grafo.adicionarVertice(5)
 
-# Agregar aristas
+# Agregamos algunos arcos
 grafo.adicionarArco(1, 2)
 grafo.adicionarArco(2, 1)
 grafo.adicionarArco(2, 3)
