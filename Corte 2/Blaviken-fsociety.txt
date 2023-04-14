@@ -1,0 +1,29 @@
+Implementa un método que determine si existe un camino válido entre dos vértices
+Implementa un método que determine si el grafo tiene, al menos, un ciclo
+Implementa un método que determine si un grafo es fuertemente conexo
+Determinar si un grafo es completo
+Implementa un método que Cuente la cantidad de ciclos simples. agrega dos funciones auxiliares que nos ayuden a determinar si un vértice ha sido visitado o si hay un ciclo en el camino actual.
+
+Además, al terminar de recorrer todos los vértices adyacentes de un vértice actual, se vacía la lista de visitados para que los ciclos encontrados no interfieran con la búsqueda de ciclos en los vértices siguientes.
+
+Con este metodo: 
+
+def contarCiclosSimples(self):
+        contador = 0
+        visitados = set()
+        for vertice in self.verVertices():
+            pila = [(vertice, [vertice])]
+            while pila:
+                actual, camino = pila.pop()
+                if actual in visitados:
+                    if camino[0] == camino[-1] and len(camino) == len(set(camino)):
+                        contador += 1
+                    continue
+                visitados.add(actual)
+                adyacentes_actual = self.buscarVertice(actual)
+                for adyacente in adyacentes_actual:
+                    if adyacente not in visitados:
+                        pila.append((adyacente, camino + [adyacente]))
+        return contador
+
+créame un ejemplo donde yo pueda observar su funcionamiento

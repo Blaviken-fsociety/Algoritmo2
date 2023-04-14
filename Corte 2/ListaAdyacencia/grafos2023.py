@@ -72,6 +72,25 @@ class GrafoLista:
         
         return True
     
+    def contarCiclosSimples(self):
+        contador = 0
+        visitados = set()
+        for vertice in self.verVertices():
+            pila = [(vertice, [vertice])]
+            while pila:
+                actual, camino = pila.pop()
+                if actual in visitados:
+                    if camino[0] == camino[-1] and len(camino) == len(set(camino)):
+                        contador += 1
+                        print("Ciclo encontrado:", camino)
+                    continue
+                visitados.add(actual)
+                adyacentes_actual = self.buscarVertice(actual)
+                for adyacente in adyacentes_actual:
+                    if adyacente not in visitados:
+                        pila.append((adyacente, camino + [adyacente]))
+        return contador
+    
     #RECORRIDOS
     #RECORRIDO EN PROFUNDIDAD DFS
     def __dfs(self, list_recorrido:list, set_visitados:set, vertice_actual):
