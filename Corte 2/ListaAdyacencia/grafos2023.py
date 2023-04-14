@@ -90,7 +90,21 @@ class GrafoLista:
                     if adyacente not in visitados:
                         pila.append((adyacente, camino + [adyacente]))
         return contador
-    
+
+    def esMadre(self, vertice_inicial):
+        if self.buscarVertice(vertice_inicial) is None:
+            return None
+        visitados = set()
+        self.__dfs_camino_hacia_todos(visitados, vertice_inicial)
+        return len(visitados) == len(self.verVertices())
+
+    def __dfs_camino_hacia_todos(self, visitados:set, vertice_actual):
+        visitados.add(vertice_actual)
+        adyacentes_actual = self.buscarVertice(vertice_actual)
+        for ady_actual in adyacentes_actual:
+            if ady_actual not in visitados:
+                self.__dfs_camino_hacia_todos(visitados, ady_actual)
+
     #RECORRIDOS
     #RECORRIDO EN PROFUNDIDAD DFS
     def __dfs(self, list_recorrido:list, set_visitados:set, vertice_actual):
