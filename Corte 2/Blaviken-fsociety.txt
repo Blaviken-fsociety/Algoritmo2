@@ -1,32 +1,39 @@
-Implementa un método que determine si existe un camino válido entre dos vértices
-Implementa un método que determine si el grafo tiene, al menos, un ciclo
-Implementa un método que determine si un grafo es fuertemente conexo
-Determinar si un grafo es completo
-Implementa un método que Cuente la cantidad de ciclos simples. agrega dos funciones auxiliares que nos ayuden a determinar si un vértice ha sido visitado o si hay un ciclo en el camino actual.
-
-
-#EJERCICIO 1
-Implementa un método para indicar los vértices con un grado de entrada específico.
-
-#EJERCICIO 2
-Implementa un método que determine si existe un camino desde dicho vértice a todos los demás del grafo
-
-Además, al terminar de recorrer todos los vértices adyacentes de un vértice actual, se vacía la lista de visitados para que los ciclos encontrados no interfieran con la búsqueda de ciclos en los vértices siguientes.
+Implementa un método que determine los nodos hoja de un árbol
+Implementa un método que determine el número de nodos de un árbol
+Implementa un método que determine la altura de un árbol
+Implementa un método que determine el número de nodos en un nivel
+Implementa un método que determine si un árbol es completo
 
 Con este metodo: 
 
-def existeCaminoHaciaTodos(self, vertice_inicial):
-    if self.buscarVertice(vertice_inicial) is None:
-        return None
-    visitados = set()
-    self.__dfs_camino_hacia_todos(visitados, vertice_inicial)
-    return len(visitados) == len(self.verVertices())
+def contarNodos(self):
+    return self.__contarNodos(self)
 
-def __dfs_camino_hacia_todos(self, visitados:set, vertice_actual):
-    visitados.add(vertice_actual)
-    adyacentes_actual = self.buscarVertice(vertice_actual)
-    for ady_actual in adyacentes_actual:
-        if ady_actual not in visitados:
-            self.__dfs_camino_hacia_todos(visitados, ady_actual)
+def __contarNodos(self, arbol):
+    if arbol is None:
+        return 0
+    return 1 + self.__contarNodos(arbol.hijo_izquierdo) + self.__contarNodos(arbol.hijo_derecho)
+
 
 créame un ejemplo donde yo pueda observar su funcionamiento
+
+Crea un ejemplo parecido a esto:
+
+from arboles2023 import ArbolBinario
+#Creacion de Nodos
+raiz = ArbolBinario("A")
+nodo01 = ArbolBinario("B")
+nodo02 = ArbolBinario("C")
+nodo03 = ArbolBinario("D")
+nodo04 = ArbolBinario("E")
+nodo05 = ArbolBinario("F")
+#Conexion de nodos
+raiz.hijo_izquierdo = nodo01
+raiz.hijo_derecho = nodo02
+nodo02.hijo_izquierdo = nodo03
+nodo02.hijo_derecho = nodo04
+nodo03.hijo_derecho = nodo05
+#Visualización
+print("Arbol:\n",raiz.verArbol())
+
+en donde podamos ver la implementación del método esCompleto
