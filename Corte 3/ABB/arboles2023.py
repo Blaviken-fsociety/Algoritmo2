@@ -31,7 +31,7 @@ class ArbolBinario:
             + str(self.__verArbol(arbol.hijo_izquierdo, recorrido, nivel+1)) + \
             str(self.__verArbol(arbol.hijo_derecho, recorrido, nivel + 1)) + recorrido
         return recorrido
-                
+           
     #RECORRIDOS
     #Preorden
     def preOrden(self):
@@ -196,3 +196,121 @@ class ArbolBinarioBusqueda:
             elif nodo_temporal.hijo_derecho == nodo_izquierdo:
                 nodo_temporal.hijo_derecho = nodo_izquierdo.hijo_izquierdo
             return True
+    
+    def encontrarPadre(self, elemento):
+        if not self.estaVacio():
+            return self.__encontrarPadre(self.raiz, elemento, None)
+        return None
+
+    def __encontrarPadre(self, arbol: ArbolBinario, elemento, padre: ArbolBinario):
+        if arbol is None:
+            return None
+        if elemento == arbol.valor_nodo:
+            return padre
+        if elemento < arbol.valor_nodo:
+            return self.__encontrarPadre(arbol.hijo_izquierdo, elemento, arbol)
+        else:
+            return self.__encontrarPadre(arbol.hijo_derecho, elemento, arbol)
+    
+    def elementos_maxima_profundidad(self):
+        if self.estaVacio():
+            return []
+
+        max_depth = self.__calcular_maxima_profundidad(self.raiz)
+        return self.__obtener_elementos_maxima_profundidad(self.raiz, max_depth, 1)
+
+    def __calcular_maxima_profundidad(self, nodo):
+        if nodo is None:
+            return 0
+
+        left_depth = self.__calcular_maxima_profundidad(nodo.hijo_izquierdo)
+        right_depth = self.__calcular_maxima_profundidad(nodo.hijo_derecho)
+
+        return max(left_depth, right_depth) + 1
+
+    def __obtener_elementos_maxima_profundidad(self, nodo, max_depth, current_depth):
+        if nodo is None:
+            return []
+
+        if current_depth == max_depth:
+            return [nodo.valor_nodo]
+
+        left_elements = self.__obtener_elementos_maxima_profundidad(nodo.hijo_izquierdo, max_depth, current_depth + 1)
+        right_elements = self.__obtener_elementos_maxima_profundidad(nodo.hijo_derecho, max_depth, current_depth + 1)
+
+        return left_elements + right_elements
+    
+    def encontrar_valor_mas_cercano_encima(self, dato):
+        if self.estaVacio():
+            return None
+    
+        valor_mas_cercano = None
+        nodo_actual = self.raiz
+
+        while nodo_actual is not None:
+            if nodo_actual.valor_nodo > dato:
+                # Actualizar el valor más cercano si es mayor que el dato y más cercano hasta ahora
+                if valor_mas_cercano is None or nodo_actual.valor_nodo < valor_mas_cercano:
+                    valor_mas_cercano = nodo_actual.valor_nodo
+                nodo_actual = nodo_actual.hijo_izquierdo
+            else:
+                nodo_actual = nodo_actual.hijo_derecho
+    
+        return valor_mas_cercano
+
+    def menorNodo(self):
+        if not self.estaVacio():
+            menor = self.raiz
+            return self.__menorNodoRecursivo(self.raiz, menor)
+            return None
+
+    def __menorNodoRecursivo(self, arbol: ArbolBinario, menor: ArbolBinario):
+        if arbol is None:
+            return None
+        if arbol.valor_nodo < menor.valor_nodo:
+            menor = arbol
+        menorIzquierdo = self.__menorNodoRecursivo(arbol.hijo_izquierdo, menor)
+        if menorIzquierdo is not None and menorIzquierdo.valor_nodo < menor.valor_nodo:
+            menor = menorIzquierdo
+        menorDerecho = self.__menorNodoRecursivo(arbol.hijo_derecho, menor)
+        if menorDerecho is not None and menorDerecho.valor_nodo < menor.valor_nodo:
+            menor = menorDerecho
+        return menor
+
+    def mayorNodo(self):
+        if not self.estaVacio():
+            mayor = self.raiz
+            return self.__mayorNodoRecursivo(self.raiz, mayor)
+        return None
+
+    def __mayorNodoRecursivo(self, arbol: ArbolBinario, mayor: ArbolBinario):
+        if arbol is None:
+            return mayor
+        if arbol.valor_nodo > mayor.valor_nodo:
+            mayor = arbol
+        mayorIzquierdo = self.__mayorNodoRecursivo(arbol.hijo_izquierdo, mayor)
+        mayorDerecho = self.__mayorNodoRecursivo(arbol.hijo_derecho, mayor)
+        if mayorIzquierdo.valor_nodo > mayor.valor_nodo:
+            mayor = mayorIzquierdo
+        if mayorDerecho.valor_nodo > mayor.valor_nodo:
+            mayor = mayorDerecho
+        return mayor
+    
+    def factorEquilibrio(self):
+        if self.estaVacio():
+            return 0
+        return self.__factorEquilibrio(self.raiz)
+
+    def __factorEquilibrio(self, arbol: ArbolBinario):
+        if arbol is None:
+            return 0
+        altura_izquierdo = self.__calcularAltura(arbol.hijo_izquierdo)
+        altura_derecho = self.__calcularAltura(arbol.hijo_derecho)
+        return altura_izquierdo - altura_derecho
+
+    def __calcularAltura(self, arbol: ArbolBinario):
+        if arbol is None:
+            return 0
+        altura_izquierdo = self.__calcularAltura(arbol.hijo_izquierdo)
+        altura_derecho = self.__calcularAltura(arbol.hijo_derecho)
+        return max(altura_izquierdo, altura_derecho) + 1

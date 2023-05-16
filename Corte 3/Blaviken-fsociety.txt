@@ -4,6 +4,14 @@ Implementa un método que determine la altura de un árbol
 Implementa un método que determine el número de nodos en un nivel
 Implementa un método que determine si un árbol es completo
 
+Implementar los siguientes métodos para árboles binarios:
+
+Implementa un método que determine el nodo padre para un elemento dado del árbol
+Implementa un método que determine los elementos del árbol a la máxima profundidad posible
+Para ABB
+Implementa un método que determine el valor más cercano por encima de un dato indicado
+Implementa un método que determine
+Implementa un método que determine
 Con este metodo: 
 
 def contarNodos(self):
