@@ -1,0 +1,39 @@
+Implementa un método que determine los nodos hoja de un árbol
+Implementa un método que determine el número de nodos de un árbol
+Implementa un método que determine la altura de un árbol
+Implementa un método que determine el número de nodos en un nivel
+Implementa un método que determine si un árbol es completo
+
+Con este metodo: 
+
+def contarNodos(self):
+    return self.__contarNodos(self)
+
+def __contarNodos(self, arbol):
+    if arbol is None:
+        return 0
+    return 1 + self.__contarNodos(arbol.hijo_izquierdo) + self.__contarNodos(arbol.hijo_derecho)
+
+
+créame un ejemplo donde yo pueda observar su funcionamiento
+
+Crea un ejemplo parecido a esto:
+
+from arboles2023 import ArbolBinario
+#Creacion de Nodos
+raiz = ArbolBinario("A")
+nodo01 = ArbolBinario("B")
+nodo02 = ArbolBinario("C")
+nodo03 = ArbolBinario("D")
+nodo04 = ArbolBinario("E")
+nodo05 = ArbolBinario("F")
+#Conexion de nodos
+raiz.hijo_izquierdo = nodo01
+raiz.hijo_derecho = nodo02
+nodo02.hijo_izquierdo = nodo03
+nodo02.hijo_derecho = nodo04
+nodo03.hijo_derecho = nodo05
+#Visualización
+print("Arbol:\n",raiz.verArbol())
+
+en donde podamos ver la implementación del método esCompleto
