@@ -31,7 +31,22 @@ class ArbolBinario:
             + str(self.__verArbol(arbol.hijo_izquierdo, recorrido, nivel+1)) + \
             str(self.__verArbol(arbol.hijo_derecho, recorrido, nivel + 1)) + recorrido
         return recorrido
-                
+
+    def eliminarNodosHoja(self):
+        self.__eliminarNodosHoja(self)
+
+    def __eliminarNodosHoja(self, arbol):
+        if arbol is not None:
+            if arbol.hijo_izquierdo is not None and arbol.hijo_izquierdo.esHoja():
+                arbol.hijo_izquierdo = None
+            else:
+                self.__eliminarNodosHoja(arbol.hijo_izquierdo)
+
+            if arbol.hijo_derecho is not None and arbol.hijo_derecho.esHoja():
+                arbol.hijo_derecho = None
+            else:
+                self.__eliminarNodosHoja(arbol.hijo_derecho)
+
     #RECORRIDOS
     #Preorden
     def preOrden(self):
@@ -196,3 +211,46 @@ class ArbolBinarioBusqueda:
             elif nodo_temporal.hijo_derecho == nodo_izquierdo:
                 nodo_temporal.hijo_derecho = nodo_izquierdo.hijo_izquierdo
             return True
+
+    def eliminar_nodos_hoja_padre_un_hijo(self):
+        if not self.estaVacio():
+            self.__eliminar_nodos_hoja_padre_un_hijo(self.raiz, None)
+    
+    def __eliminar_nodos_hoja_padre_un_hijo(self, arbol: ArbolBinario, padre: ArbolBinario):
+        if arbol is None:
+            return
+        
+        if arbol.esHoja() and padre is not None and (padre.hijo_izquierdo is None or padre.hijo_derecho is None):
+            if padre.hijo_izquierdo == arbol:
+                padre.hijo_izquierdo = None
+            else:
+                padre.hijo_derecho = None
+            return
+        
+        self.__eliminar_nodos_hoja_padre_un_hijo(arbol.hijo_izquierdo, arbol)
+        self.__eliminar_nodos_hoja_padre_un_hijo(arbol.hijo_derecho, arbol)
+
+    def estaContenido(self, otro_arbol):
+        if otro_arbol.estaVacio():
+            return True
+        if self.estaVacio():
+            return False
+
+        raiz_otro_arbol = otro_arbol.raiz
+        if self.buscar(raiz_otro_arbol.valor_nodo) is None:
+            return False
+
+        return self.__estaContenido(self.raiz, raiz_otro_arbol)
+
+    def __estaContenido(self, arbol, otro_arbol):
+        if otro_arbol is None:
+            return True
+        if arbol is None:
+            return False
+
+        if arbol.valor_nodo == otro_arbol.valor_nodo:
+            return (self.__estaContenido(arbol.hijo_izquierdo, otro_arbol.hijo_izquierdo) and
+                    self.__estaContenido(arbol.hijo_derecho, otro_arbol.hijo_derecho))
+        
+        return (self.__estaContenido(arbol.hijo_izquierdo, otro_arbol) or
+                self.__estaContenido(arbol.hijo_derecho, otro_arbol))
