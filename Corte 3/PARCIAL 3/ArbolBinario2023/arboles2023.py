@@ -30,7 +30,31 @@ class ArbolBinario:
         recorrido =  espaciado + str(arbol.valor_nodo) + "\n" \
             + str(self.__verArbol(arbol.hijo_izquierdo, recorrido, nivel+1)) + \
             str(self.__verArbol(arbol.hijo_derecho, recorrido, nivel + 1)) + recorrido
-        return recorrido        
+        return recorrido  
+
+    def recorridoPorNiveles(self):
+        visitados = []
+        nivel_actual = 0
+        self.__recorridoPorNiveles(self, visitados, nivel_actual)
+        return visitados
+
+    def __recorridoPorNiveles(self, arbol, visitados, nivel):
+        if arbol is None:
+            return
+    
+        if nivel == 0:
+            visitados.append(arbol)
+    
+        if arbol.hijo_izquierdo is not None:
+            visitados.append(arbol.hijo_izquierdo)
+    
+        if arbol.hijo_derecho is not None:
+            visitados.append(arbol.hijo_derecho)
+    
+        nivel += 1
+        self.__recorridoPorNiveles(arbol.hijo_izquierdo, visitados, nivel)
+        self.__recorridoPorNiveles(arbol.hijo_derecho, visitados, nivel)
+      
     
     #RECORRIDOS
     #Preorden

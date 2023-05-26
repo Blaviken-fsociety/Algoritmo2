@@ -1,0 +1,50 @@
+Implementa un método que determine los nodos hoja de un árbol
+Implementa un método que determine el número de nodos de un árbol
+Implementa un método que determine la altura de un árbol
+Implementa un método que determine el número de nodos en un nivel
+Implementa un método que determine si un árbol es completo
+
+Implementar los siguientes métodos para árboles binarios:
+
+Implementa un método que determine el nodo padre para un elemento dado del árbol
+Implementa un método que determine los elementos del árbol a la máxima profundidad posible
+Para ABB
+Implementa un método que determine el valor más cercano por encima de un dato indicado
+
+Parcial #3
+
+Implementa un método que permita eliminar todos los nodos hoja cuyo padre tenga un único hijo en el momento.
+Implementa un método que determine si un segundo árbol binario de búsqueda hace parte o no, del primero (es decir, se encuentra completamente inmerso en la estructura del árbol inicial).
+
+Con este metodo: 
+
+def contarNodos(self):
+    return self.__contarNodos(self)
+
+def __contarNodos(self, arbol):
+    if arbol is None:
+        return 0
+    return 1 + self.__contarNodos(arbol.hijo_izquierdo) + self.__contarNodos(arbol.hijo_derecho)
+
+
+créame un ejemplo donde yo pueda observar su funcionamiento
+
+Crea un ejemplo parecido a esto:
+
+from arboles2023 import ArbolBinarioBusqueda
+#Creacion de instancia
+arbol01 = ArbolBinarioBusqueda()
+#Adicion de valores
+arbol01.insertar(5)
+arbol01.insertar(4)
+arbol01.insertar(1)
+arbol01.insertar(3)
+arbol01.insertar(7)
+arbol01.insertar(6)
+arbol01.insertar(9)
+arbol01.insertar(8)
+arbol01.insertar(10)
+print("Arbol: ",arbol01)
+print("En Orden:",arbol01.enOrden())
+
+en donde podamos ver la implementación del método estaContenido

@@ -10,38 +10,89 @@ Implementa un método que determine el nodo padre para un elemento dado del árb
 Implementa un método que determine los elementos del árbol a la máxima profundidad posible
 Para ABB
 Implementa un método que determine el valor más cercano por encima de un dato indicado
-Implementa un método que determine
-Implementa un método que determine
+
+Taller #3
+
+Implementar los siguientes métodos para árboles binarios:
+
+Implementa un método que determine si dos árboles binarios son iguales o no
+Implementa un método que cree un árbol parcialmente ordenado con una lista de elementos
+dado. Un árbol es parcialmente ordenado si cada nodo es menor o
+igual en valor que todos los nodos de sus subárboles.
+
+Para ABB:
+
+Implementa un método que determine si un ABB es un árbol AVL. Un ABB es AVL si su factor de
+equilibrio para todos los nodos es igual a -1 ,0 o 1.
+Implementa un método que cree un ABB a partir de una lista de elementos dados por el usuario.
+Implementa un método que determine un ABB con una lista de elementos de tipo fraccionario
+(fracción).
+
 Con este metodo: 
 
-def contarNodos(self):
-    return self.__contarNodos(self)
+ def sonIguales(self, otro_arbol):
+        return self.__sonIguales(self, otro_arbol)
 
-def __contarNodos(self, arbol):
-    if arbol is None:
-        return 0
-    return 1 + self.__contarNodos(arbol.hijo_izquierdo) + self.__contarNodos(arbol.hijo_derecho)
+    def __sonIguales(self, arbol1, arbol2):
+        if arbol1 is None and arbol2 is None:
+            return True
+        if arbol1 is None or arbol2 is None:
+            return False
+        if arbol1.valor_nodo != arbol2.valor_nodo:
+            return False
+        return self.__sonIguales(arbol1.hijo_izquierdo, arbol2.hijo_izquierdo) and \
+            self.__sonIguales(arbol1.hijo_derecho, arbol2.hijo_derecho)
+
+
+créame un ejemplo donde yo pueda observar su funcionamiento
+*********************************************************************************************************
+Crea un ejemplo parecido a esto:
+
+from arboles2023 import ArbolBinarioBusqueda
+#Creacion de instancia
+arbol01 = ArbolBinarioBusqueda()
+#Adicion de valores
+arbol01.insertar(40)
+arbol01.insertar(20)
+arbol01.insertar(60)
+arbol01.insertar(10)
+arbol01.insertar(30)
+arbol01.insertar(50)
+arbol01.insertar(70)
+arbol01.insertar(45)
+arbol01.insertar(55)
+arbol01.insertar(54)
+arbol01.insertar(75)
+
+print("Arbol: ",arbol01)
+print("En Orden:",arbol01.enOrden())
+
+en donde podamos ver la implementación del método sonIguales
+---------------------------------------------------------------------------------------------------------
+Con este metodo: 
+
 
 
 créame un ejemplo donde yo pueda observar su funcionamiento
 
-Crea un ejemplo parecido a esto:
+Debes tener en cuenta que el ejemplo debe ser parecido a esto:
 
-from arboles2023 import ArbolBinario
-#Creacion de Nodos
-raiz = ArbolBinario("A")
-nodo01 = ArbolBinario("B")
-nodo02 = ArbolBinario("C")
-nodo03 = ArbolBinario("D")
-nodo04 = ArbolBinario("E")
-nodo05 = ArbolBinario("F")
-#Conexion de nodos
-raiz.hijo_izquierdo = nodo01
-raiz.hijo_derecho = nodo02
-nodo02.hijo_izquierdo = nodo03
-nodo02.hijo_derecho = nodo04
-nodo03.hijo_derecho = nodo05
-#Visualización
-print("Arbol:\n",raiz.verArbol())
+from arboles2023 import ArbolBinarioBusqueda
+#Creacion de instancia
+arbol01 = ArbolBinarioBusqueda()
+#Adicion de valores
+arbol01.insertar(40)
+arbol01.insertar(20)
+arbol01.insertar(60)
+arbol01.insertar(10)
+arbol01.insertar(30)
+arbol01.insertar(50)
+arbol01.insertar(70)
+arbol01.insertar(45)
+arbol01.insertar(55)
+arbol01.insertar(54)
+arbol01.insertar(75)
 
-en donde podamos ver la implementación del método esCompleto
+print("Arbol: ",arbol01)
+
+[(1,2), (3,4), (1,6), (4,5), (3,2), (1,3), (7,4)]
